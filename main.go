@@ -13,7 +13,7 @@ func haltOn(err error) {
 }
 
 func main() {
-	fmt.Println("hello")
+	fmt.Println("hi guys")
 	client := redis.NewClient(&redis.Options{
 		//container name:port
 		Addr:     "redis:6379",
