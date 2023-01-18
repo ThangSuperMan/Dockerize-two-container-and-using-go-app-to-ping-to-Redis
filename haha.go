@@ -1,7 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 func haha() {
-	fmt.Println("hello")
+	fmt.Println("helllo")
 }

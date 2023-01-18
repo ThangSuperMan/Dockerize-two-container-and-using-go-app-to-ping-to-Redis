@@ -1,0 +1,66 @@
+
+*** These modified files were found in JOE when it aborted on Wed Jan 18 15:18:31 2023
+*** JOE was aborted because the terminal closed
+
+*** File '(Unnamed)'
+main.go
+
+*** File 'main.go'
+package main
+
+import (
+	"PingRedis/folder"
+	"fmt"
+	"net/http"
+
+	"github.com/go-redis/redis"
+)
+
+func sum(a int, b int) int {
+	if a > b {
+		fmt.Println("a > b")
+		return a
+	} else {
+		fmt.Println("a < b")
+		return a
+	}
+}
+
+func handleHomeRouter(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprint(w, "home router")
+}
+
+func main() {
+	fmt.Println("hello")
+	client := redis.NewClient(&redis.Options{
+		//container name:port
+		Addr:     "redis:6379",
+		Password: "",
+		DB:       0,
+	})
+
+	pong, err := client.Ping().Result()
+	folder.CheckError(err)
+	fmt.Println("Pong :>> ", pong)
+
+	http.HandleFunc("/", handleHomeRouter)
+	http.ListenAndServe(":3000", nil)
+}
+
+*** File '* Startup Log *'
+Processing '/opt/homebrew/Cellar/joe/4.6/etc/joe/joerc'...
+Processing '/opt/homebrew/Cellar/joe/4.6/etc/joe/ftyperc'...
+Finished processing /opt/homebrew/Cellar/joe/4.6/etc/joe/ftyperc
+Finished processing /opt/homebrew/Cellar/joe/4.6/etc/joe/joerc
+
+*** These modified files were found in JOE when it aborted on Wed Jan 18 15:18:47 2023
+*** JOE was aborted by UNIX signal 1
+
+*** File '(Unnamed)'
+main.go
+
+*** File '* Startup Log *'
+Processing '/opt/homebrew/Cellar/joe/4.6/etc/joe/joerc'...
+Processing '/opt/homebrew/Cellar/joe/4.6/etc/joe/ftyperc'...
+Finished processing /opt/homebrew/Cellar/joe/4.6/etc/joe/ftyperc
+Finished processing /opt/homebrew/Cellar/joe/4.6/etc/joe/joerc
